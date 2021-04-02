@@ -35,17 +35,41 @@ class App extends Component {
       { name: "Mount Abu", country: "India" },
       { name: "Tirupati", country: "India" }
     ];
+    this.list2 = this.FilterElement();
+    this.liList = this.wrap();
+  }
+  wrap() {
+    // console.log(this.list2);
+    let c = 0;
+    const list2 = this.FilterElement();
+    const wrapcity = this.list2.map((city) => {
+      let keyloc = "location";
+      return <li key={keyloc + c++}>{city}</li>;
+    });
+    return <ol>{wrapcity}</ol>;
+  }
+  FilterElement() {
+    let indCity = [];
+    this.cityList.forEach((city) => {
+      if (city.country === "India" && !indCity.includes(city.name)) {
+        indCity.push(city.name);
+      }
+    });
+    return indCity;
   }
 
   render() {
     const arr = this.cityList.filter((item, index) => item.country === "India");
+    // const list2 = this.FilterElement();
     return (
       <div id="main">
-        <ol>
+        {/* <ol>
           {arr.map((item, index) => (
             <li key={`location${index + 1}`}>{`${item.name}`}</li>
           ))}
-        </ol>
+        </ol> */}
+
+        {this.liList}
       </div>
     );
   }
