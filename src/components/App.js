@@ -37,12 +37,17 @@ class App extends Component {
     ];
   }
 
-  render() {
+   render() {
+    const arr = this.cityList.filter((item, index) => item.country === "India");
     return (
       <div id="main">
-        {this.cityList.map((item, key) => (
-          <li key={item.country}>{item.name}</li>
-        ))}
+        <ol>
+          {arr.map((item, index) => (
+            <li key={`location${index+1}`}>
+              {`${item.name}(${item.country})`}
+            </li>
+          ))}
+        </ol>
       </div>
     );
   }
